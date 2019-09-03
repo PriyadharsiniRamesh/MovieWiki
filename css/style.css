@@ -1,0 +1,187 @@
+/* common styles */
+body{
+    margin: 0px;
+    background-color: #0f1a21;
+    color: #f7f4f1;
+}
+/* search bar */
+.searchSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a242e;
+    height: 100vh;
+}
+.searchSection h1{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: #2a8cf3;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+.searchSection h1 span{
+    color:#f7f4f1;
+    font-weight: 700;
+}
+.searchSection #search,.searchSection #search:hover,.searchSection #search:active,.searchSection #search:focus{
+    height: 40px;
+    width: 350px;
+    border-radius: 50px;
+    border: 1px grey solid;
+    outline: none;
+    padding: 10px;
+}
+.searchSection #submit{
+    height: 40px;
+    width: 100px;
+    border-radius: 50px;
+    border: 1px grey solid;
+}
+/* resultSection */
+.resultSection{
+    display: flex;
+    background-color: #1a242e;
+    height: 55px;
+    box-shadow: 0px 1px 2px 0px rgba(73, 145, 234, 0.5);
+}
+.resultSection a{
+    text-decoration: none;
+}
+.resultSection a h1{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color:#2a8cf3;
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 30px;
+}
+.resultSection h1 span{
+    font-weight: 700;
+    color: #f7f4f1;
+}
+/* search result */
+#movieResults ul {
+    padding: 20px;
+}
+#movieResults .movieBlock{
+    display: inline-block;
+    margin: 20px;
+}
+#movieResults .movieBlock a{
+    display: inline-block;
+    height: 280px;
+    width: 199px;
+    text-decoration: none;
+    padding: 10px 10px 0px;
+    border: 1px grey solid;
+}
+#movieResults .movieBlock img{
+    height: 240px;
+    width: 200px;
+    margin-bottom: 8px;
+}
+#movieResults .movieBlock p{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #6f91a4;
+    letter-spacing: 0.4px;
+    margin: 0px;
+}
+#showMore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #f7f4f1;
+    background-color: #425265;
+    margin: 0 auto 50px;
+    height: 40px;
+    border-radius: 2px;
+    width: 300px;
+    border: 1px grey solid;
+}
+#showMore:hover{
+    box-shadow: 2px 2px 7px 2px rgba(73, 145, 234, 0.5);
+}
+/* movie details */
+#content .right-pane img{
+    height: 300px;
+    width: 230px;
+    box-shadow: 2px 2px 7px 2px rgba(73, 145, 234, 0.5);
+}
+.go-back-link{
+    display: inline-block;
+    
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6f91a4;
+    padding: 0px 30px;
+    margin-top: 30px;
+}
+.info-block{
+    padding: 0px 30px;
+}
+.info-block .left-pane{
+    padding-right: 50px;
+}
+.info-block .left-pane h2{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 38px;
+    font-weight: 700;
+    margin-top: 20px;
+}
+.info-block .left-pane p{
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5em;
+    letter-spacing: 0.4px;
+    text-align: justify;
+}
+.info-block .left-pane p.sub-heading{
+    color: #6f91a4;
+    padding-right: 25px;
+}
+.info-block .left-pane p.sub-heading span{
+    color: #f7f4f1;
+    padding: 0px 15px 0px 5px;
+}
+.info-block .left-pane .details-table p{
+    margin: 0px 0px 5px ;
+}
+/* media queries */
+@media screen and (max-width: 600px) {
+    .searchSection h1{
+        font-size: 20px;
+    }
+    .searchSection #search,.searchSection #search:hover,.searchSection #search:active,.searchSection #search:focus{
+        width: 250px;
+    }
+    .info-block .left-pane{
+        padding-right: 0px;
+        display: block;
+    }
+    .info-block .right-pane{
+        display: block;
+    }
+    .info-block .left-pane .details-table p{
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 992px) {
+    #movieResults .movieBlock a {
+        height: 320px;
+        width: 280px;
+    }
+    #movieResults .movieBlock img {
+        height: 280px;
+        width: 275px;
+    }
+}

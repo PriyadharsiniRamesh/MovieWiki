@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <!-- Import stylesheets -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/style.css" >
+    </head>
+    <body>
+        <!-- Search result -->
+        <section class="resultSection">
+            <a href="index.html">
+                <h1>Movie<span>Wiki</span></h1>
+            </a>
+        </section>
+        <!-- Movie detail -->
+        <div id="content">
+            <a href="javascript:history.back()" class="go-back-link">Go Back</a>
+            <table class="info-block">
+                <tr class="row">
+                    <td class="left-pane">
+                        <h2 id="title"></h2>
+                        <p class="sub-heading">
+                            Year<span id="year"></span>&nbsp;
+                            Duration<span id="time"></span>
+                        </p>
+                        <p class="sub-heading">IMDB<span id="imdb"></span></p>
+                        <p id="plot"></p>
+                        <table class="details-table">
+                            <tr>
+                                <td><p class="sub-heading">Director</p></td>
+                                <td><p id="director"></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="sub-heading">Starring</p></td>
+                                <td><p id="actors"></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="sub-heading">Genres<p></p></td>
+                                <td><p id="genres"></p></td>
+                            </tr>
+                            <tr>
+                                <td><p class="sub-heading">Language</p></td>
+                                <td><p id="lang"></p></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td class="right-pane">
+                        <div id="img"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- Script to fetch movie details -->
+        <script>
+            window.onload=function(){
+                var a=window.location.href.split('#')[1];
+                var x=a.split('=')[1];
+                console.log(x);
+                fetch('http://www.omdbapi.com/?apikey=6684553&t='+x+'&plot=full')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("title").innerHTML=data.Title;
+                    var img = document.createElement('img');
+                    img.src = data.Poster;
+                    img.alt = data.Title;
+                    document.getElementById("img").appendChild(img);
+                    document.getElementById("year").innerHTML=data.Released;
+                    document.getElementById("imdb").innerHTML=data.imdbRating;
+                    document.getElementById("director").innerHTML=data.Director;
+                    document.getElementById("actors").innerHTML=data.Actors;
+                    document.getElementById("genres").innerHTML=data.Genre;
+                    document.getElementById("lang").innerHTML=data.Language;
+                    document.getElementById("time").innerHTML=data.Runtime;
+                    document.getElementById("plot").innerHTML=data.Plot;
+                })
+            }
+        </script>
+    </body>
+</html>

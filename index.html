@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <title>Movie Wiki</title>
+    <!-- Import stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" >
+</head>
+<body>
+    <!-- Search bar -->
+    <section class="searchSection">
+        <div>
+            <h1>Movie<span>Wiki</span></h1>
+            <input type="search" name="search" id="search" placeholder="Search movies" autocomplete="on" onkeypress="search(event)">
+        </div>
+    </section>
+    <!-- Search result -->
+    <section class="resultSection" style="display:none">
+        <a href="index.html">
+            <h1>Movie<span>Wiki</span></h1>
+        </a>
+        <!-- Movie list -->
+        <div id="movieResults">
+
+        </div>
+        <button id="showMore" onclick="loadMovies()" class="hide" >Load More</button>
+    </section>
+    <!-- Script to fetch result using omdbapi -->
+    <script>
+        var movies = [];
+        var page = 1;
+        var count;
+        function search(e){
+            if(e.keyCode==13)
+                loadMovies();
+        }
+        function loadMovies(){
+            event.preventDefault();
+            {
+                var movieName = document.getElementById("search").value;
+                var movieURL = "https://www.omdbapi.com/?apikey=6684553&s="+movieName+"&type=movie&page="+page;
+                fetch(movieURL)
+                .then(response => response.json())
+                .then(function(data) {
+                    document.getElementsByClassName("searchSection")[0].style.display="none";
+                    document.getElementsByClassName("resultSection")[0].style.display="block";
+                    var movieList = document.createElement('ul');
+                    count = data.totalResults;
+                        data.Search.forEach(function(value) {
+                            var list = document.createElement('li');
+                            list.className = "movieBlock";
+                            movieList.appendChild(list);
+                            var link = document.createElement('a');
+                            link.href = 'detail.html#title='+value.Title;
+                            list.appendChild(link);
+                            var img = document.createElement('img');
+                            img.src = (value.Poster  && value.Poster != 'N/A')? value.Poster : "img/poster.png";
+                            img.alt = value.Title;
+                            link.appendChild(img);
+                            var title = document.createElement('p');
+                            title.innerHTML = value.Title;
+                            link.appendChild(title);
+                        });
+                        document.getElementById("movieResults").appendChild(movieList);
+                        if(movies.length !== Number(count)){
+                            page++; 
+                            document.getElementById("showMore").classList.remove('hide');
+                        }
+                        else{
+                            document.getElementById("showMore").classList.add('hide');
+                        }
+                    })
+                .catch((error)=>{ 
+                    document.getElementById("movieResults").innerText = data.error;
+                });
+            }
+        }
+    </script>
+</body>
+</html>
